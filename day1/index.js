@@ -6,6 +6,7 @@ let puzzleInput = data.split("\n");
 
 let currentElfCaloriesSum = 0;
 let mostCalories = 0;
+let caloriesPerElf = [];
 
 const getMostCalories = () => {
   puzzleInput.forEach((input) => {
@@ -16,11 +17,21 @@ const getMostCalories = () => {
       currentElfCaloriesSum = 0;
     } else {
       currentElfCaloriesSum += parseInt(input);
+      caloriesPerElf.push(currentElfCaloriesSum);
     }
   });
-    
-    return mostCalories;
+
+  return mostCalories;
 };
 
 console.log(getMostCalories());
 
+const getThreeFirstElves = () => {
+  let sortedCaloriesPerElf = [...caloriesPerElf].sort((a, b) => b - a);
+  let sumOfTheFirstThreeElves =
+    sortedCaloriesPerElf[0] + sortedCaloriesPerElf[1] + sortedCaloriesPerElf[2];
+
+  return sumOfTheFirstThreeElves;
+};
+
+console.log(getThreeFirstElves());
